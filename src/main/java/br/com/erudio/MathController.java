@@ -5,13 +5,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.erudio.exception.UnsupportedMathOperationsException;
+
 @RestController
 public class MathController {
 	
 	@RequestMapping(value="/sum/{numberOne}/{numberTwo}", method=RequestMethod.GET)
 	public Double sum(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) throws Exception {
 		if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
-			throw new Exception();
+			throw new UnsupportedMathOperationsException("Please set a numeric value!");
 		}
 		Double sum = convertToDouble(numberOne) + convertToDouble(numberTwo);
 		return sum;
