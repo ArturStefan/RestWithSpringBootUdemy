@@ -17,8 +17,11 @@ public class MathController {
 		return sum;
 	}
 	
-	private Double convertToDouble(String number){
-		return 1D;
+	private Double convertToDouble(String strNumber){
+		if (strNumber == null) return 0D;
+		String number = strNumber.replace(",", ".");
+		if (isNumeric(number)) return Double.parseDouble(number);
+		return 0D;
 
 	}
 
