@@ -1,4 +1,9 @@
 target
-.settings/
-.project
+build
+
 .classpath
+.springBeans
+.project
+.settings
+.gradle
+
