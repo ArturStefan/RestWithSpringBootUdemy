@@ -57,6 +57,16 @@ public class MathController {
 		return div;
 	}
 	
+	@RequestMapping(value="/med/{numberOne}/{numberTwo}", method=RequestMethod.GET)
+	public Double med(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) throws Exception {
+		if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsupportedMathOperationsException("Please set a numeric value!");
+		}
+		
+		Double med = (convertToDouble(numberOne) + convertToDouble(numberTwo)) / 2;
+		
+		return med;
+	}
 	private Double convertToDouble(String strNumber){
 		if(strNumber == null) return 0D;
 		String number = strNumber.replace(",", ".");
