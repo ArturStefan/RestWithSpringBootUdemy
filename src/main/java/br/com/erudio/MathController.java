@@ -43,6 +43,20 @@ public class MathController {
 		return mult;
 	}
 	
+	@RequestMapping(value="/div/{numberOne}/{numberTwo}", method=RequestMethod.GET)
+	public Double div(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) throws Exception {
+		if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsupportedMathOperationsException("Please set a numeric value!");
+		}
+		else if(convertToDouble(numberTwo) == 0.0){
+			throw new UnsupportedMathOperationsException("It is not possible to divide by 0!");
+		}
+		
+		Double div = convertToDouble(numberOne) / convertToDouble(numberTwo);
+		
+		return div;
+	}
+	
 	private Double convertToDouble(String strNumber){
 		if(strNumber == null) return 0D;
 		String number = strNumber.replace(",", ".");
