@@ -32,6 +32,17 @@ public class MathController {
 		return sub;
 	}
 	
+	@RequestMapping(value="/mult/{numberOne}/{numberTwo}", method=RequestMethod.GET)
+	public Double mult(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) throws Exception {
+		if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsupportedMathOperationsException("Please set a numeric value!");
+		}
+		
+		Double mult = convertToDouble(numberOne) * convertToDouble(numberTwo);
+		
+		return mult;
+	}
+	
 	private Double convertToDouble(String strNumber){
 		if(strNumber == null) return 0D;
 		String number = strNumber.replace(",", ".");
